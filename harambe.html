@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<title>
+			Settle This Like Adults
+		</title>
+	</head>
+	<body>
+		<button onclick = "doRock();changeColor();">
+			Rock
+			
+		</button>
+		<button onclick = "doPapel();changeColor();">
+			Papel
+		</button>
+		<button onclick = "doScissors();changeColor();">
+			Scissors
+		</button>
+		<p id = "Result">
+		</p>
+		<script>
+			function doRock(){
+				var rnd = Math.floor(Math.random()*3)+1;
+				var playerChoice = "Papel";
+				var computerChoice;
+				if(rnd == 1) {
+				computerChoice = "Rock";
+				}
+				if(rnd == 2) {
+				computerChoice = "Papel";
+				}
+				if(rnd == 3) {
+				computerChoice = "Scissors";
+				}
+				if(computerChoice == "Rock"){
+				document.getElementById("Result").innerHTML = "You tied! Try again!";
+				}
+				if(computerChoice == "Papel") {
+				document.getElementById("Result").innerHTML = "You done lost! Go away!";
+				}
+				if(computerChoice == "Scissors") {
+				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
+				}
+			}
+			function doPapel(){
+				var rnd = Math.floor(Math.random()*3)+1;
+				var playerChoice = "Rock";
+				var computerChoice;
+				if(rnd == 1) {
+				computerChoice = "Rock";
+				}
+				if(rnd == 2) {
+				computerChoice = "Papel";
+				}
+				if(rnd == 3) {
+				computerChoice = "Scissors";
+				}
+				if(computerChoice == "Papel"){
+				document.getElementById("Result").innerHTML = "You tied! Try again!";
+				}
+				if(computerChoice == "Scissors") {
+				document.getElementById("Result").innerHTML = "You done lost! Go away!";
+				}
+				if(computerChoice == "Rock") {
+				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
+				}
+			}
+			function doScissors(){
+				var rnd = Math.floor(Math.random()*3+1);
+				var playerChoice = "Scissors";
+				var computerChoice;
+				if(rnd == 1) {
+				computerChoice = "Rock";
+				}
+				if(rnd == 2) {
+				computerChoice = "Papel";
+				}
+				if(rnd == 3) {
+				computerChoice = "Scissors";
+				}
+				if(computerChoice == "Scissors"){
+				document.getElementById("Result").innerHTML = "You tied! Try again!";
+				}
+				if(computerChoice == "Rock") {
+				document.getElementById("Result").innerHTML = "You done lost! Go away!";
+				}
+				if(computerChoice == "Papel") {
+				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
+				}
+			}
+			function changeColor() {
+				var color = Math.floor(Math.random()*999999)+1;
+				document.bgColor = (color);
+			}
+		</script>
+	</body>
+</html>	
