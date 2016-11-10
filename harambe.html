@@ -1,96 +1,105 @@
 <html>
 	<head>
+		<link rel = "stylesheet" href = "Jackcss.css">
 		<title>
-			Settle This Like Adults
+			Egyptian Ratscrew
 		</title>
 	</head>
 	<body>
-		<button onclick = "doRock();changeColor();">
-			Rock
-			
+		<button onclick = "start()">
+			START 
 		</button>
-		<button onclick = "doPapel();changeColor();">
-			Papel
+		
+		<button onclick = "playCard()">
+			PlAY Card
 		</button>
-		<button onclick = "doScissors();changeColor();">
-			Scissors
-		</button>
-		<p id = "Result">
-		</p>
-		<script>
-			function doRock(){
-				var rnd = Math.floor(Math.random()*3)+1;
-				var playerChoice = "Papel";
-				var computerChoice;
-				if(rnd == 1) {
-				computerChoice = "Rock";
-				}
-				if(rnd == 2) {
-				computerChoice = "Papel";
-				}
-				if(rnd == 3) {
-				computerChoice = "Scissors";
-				}
-				if(computerChoice == "Rock"){
-				document.getElementById("Result").innerHTML = "You tied! Try again!";
-				}
-				if(computerChoice == "Papel") {
-				document.getElementById("Result").innerHTML = "You done lost! Go away!";
-				}
-				if(computerChoice == "Scissors") {
-				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
-				}
-			}
-			function doPapel(){
-				var rnd = Math.floor(Math.random()*3)+1;
-				var playerChoice = "Rock";
-				var computerChoice;
-				if(rnd == 1) {
-				computerChoice = "Rock";
-				}
-				if(rnd == 2) {
-				computerChoice = "Papel";
-				}
-				if(rnd == 3) {
-				computerChoice = "Scissors";
-				}
-				if(computerChoice == "Papel"){
-				document.getElementById("Result").innerHTML = "You tied! Try again!";
-				}
-				if(computerChoice == "Scissors") {
-				document.getElementById("Result").innerHTML = "You done lost! Go away!";
-				}
-				if(computerChoice == "Rock") {
-				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
-				}
-			}
-			function doScissors(){
-				var rnd = Math.floor(Math.random()*3+1);
-				var playerChoice = "Scissors";
-				var computerChoice;
-				if(rnd == 1) {
-				computerChoice = "Rock";
-				}
-				if(rnd == 2) {
-				computerChoice = "Papel";
-				}
-				if(rnd == 3) {
-				computerChoice = "Scissors";
-				}
-				if(computerChoice == "Scissors"){
-				document.getElementById("Result").innerHTML = "You tied! Try again!";
-				}
-				if(computerChoice == "Rock") {
-				document.getElementById("Result").innerHTML = "You done lost! Go away!";
-				}
-				if(computerChoice == "Papel") {
-				document.getElementById("Result").innerHTML = "You actually won... once... here's a cookie.";
-				}
-			}
-			function changeColor() {
-				var color = Math.floor(Math.random()*999999)+1;
-				document.bgColor = (color);
-			}
-		</script>
+		
+		<center><p id="T"></p></center>
+		
 	</body>
-</html>	
+	<script>
+		document.body.onkeyup = function(e){
+		if(e.keyCode == 32){
+			document.getElementById("T").innerHTML = "hi";
+		}
+		}
+			
+		class Card{
+			constructor(value, suit){
+				this.value = value;
+				this.suit = suit;
+			}
+
+			getSuit() {
+				return this.suit;
+			}
+			
+			setPicture(picture) {
+				this.picture = picture;
+			}
+		}
+		
+		var cards = [];
+		var player = [];
+		var computer = [];
+		var played = [];
+		function start(){
+			for(j =0 ; j< 4; j++){
+				for(i=1; i<14; i++){
+					var strsuit = "";
+					switch(j) {
+						case 0:
+							strsuit = "Spades";
+							
+							break;
+						case 1:
+							strsuit = "Hearts";
+							break;
+						case 2:
+							strsuit = "Diamonds";
+							break;
+						case 3:
+							strsuit = "Clubs";
+							break;
+					}
+					cards.push(new Card(i, strsuit));
+					
+				}
+			}
+			for(var i = 0;i < cards.length;i++) {
+				console.log(cards[i].getSuit());
+			}
+			shuffle();
+			deal();
+		}
+		
+		function shuffle(){
+			for(i = 0; i<52; i++){
+				var switcher = Math.floor(Math.random()*51) + 1;
+				var temp = cards[i];
+				cards[i] = cards[switcher]
+				cards[switcher] = temp
+			}
+		
+		}
+		
+		function deal(){
+			for(i = 0; i <52; i++){
+				if (i%2==0){
+					computer.push(cards[i]);
+					//console.log(cards[i])
+				}
+				else{
+					player.push(cards[i]);
+				}
+			}
+		}
+		
+		function playCard(){
+			played.push(player[0]);
+			player.splice(0, 1);
+		
+		}
+		
+	</script>
+</html>
